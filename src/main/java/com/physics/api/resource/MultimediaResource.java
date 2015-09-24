@@ -15,6 +15,7 @@ import com.physics.api.dao.AnimationsDAO;
 import com.physics.api.dao.ImagesDAO;
 import com.physics.api.model.Animation;
 import com.physics.api.model.Image;
+import com.physics.api.model.Images;
 import com.sun.jersey.api.container.httpserver.HttpServerFactory;
 
 @Path("content")
@@ -40,11 +41,30 @@ public class MultimediaResource {
 	
 	@Path("{contentId}/images")
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
-	public List<Image> getAllImagesFromContent(@PathParam("contentId") Long contentId) {
-		List<Image> images = new ImagesDAO().findAllImagesFromContent(contentId);
+	@Produces(MediaType.APPLICATION_JSON)
+	public Images getAllImagesFromContent(@PathParam("contentId") Long contentId) {
+		List<Image> imagesList = new ImagesDAO().findAllImagesFromContent(contentId);
+		Images images = new Images();
+		images.setImages(imagesList);
 		return images;
 	}
+	
+//	@Path("{contentId}/images")
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public List<Image> getAllImagesFromContent(@PathParam("contentId") Long contentId) {
+//		List<Image> images = new ImagesDAO().findAllImagesFromContent(contentId);
+//		return images;
+//	}
+	
+	//Error MIME Type
+//	@Path("{contentId}/images")
+//	@GET
+//	@Produces(MediaType.APPLICATION_XML)
+//	public List<byte[]> getAllImagesFromContent(@PathParam("contentId") Long contentId) {
+//		List<byte[]> images = new ImagesDAO().findAllImagesFromContent(contentId);
+//		return images;
+//	}
 	
 	@Path("{contentId}/animation/{gifId}")
 	@GET

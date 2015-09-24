@@ -14,9 +14,11 @@ public class Image implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private Content content;
-//	private Blob image;
+//	private Content content;
 	private String description;
+	
+	public Image() {
+	}
 
 	public String getDescription() {
 		return description;
@@ -34,20 +36,12 @@ public class Image implements Serializable {
 		this.id = id;
 	}
 
-	public Content getContent() {
-		return content;
-	}
-
-	public void setContent(Content content) {
-		this.content = content;
-	}
-//
-//	public Blob getImage() {
-//		return image;
+//	public Content getContent() {
+//		return content;
 //	}
 //
-//	public void setImage(Blob image) {
-//		this.image = image;
+//	public void setContent(Content content) {
+//		this.content = content;
 //	}
 
 	@Override
