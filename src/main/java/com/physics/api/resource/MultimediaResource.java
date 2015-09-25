@@ -26,11 +26,19 @@ public class MultimediaResource {
 //	@Path("/base64/{contentId}/{imageId}")
 //	@GET
 //	@Produces(MediaType.APPLICATION_JSON)
-//	public Image searchImage(@PathParam("imageId") Long imageId, @PathParam("contentId") Long contentId) {
-//		Image image = new ImagesDAO().findImageAsBase64(imageId, contentId);
+//	public String searchImage(@PathParam("imageId") Long imageId, @PathParam("contentId") Long contentId) {
+//		String image = new ImagesDAO().findImageAsBase64(imageId, contentId);
 //		return image;
 //	}
 //	
+//	@Path("/base64/{contentId}/images")
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public List<Image> searchImageFromContent(@PathParam("contentId") Long contentId) {
+//		List<Image> images = new ImagesDAO().findAllImagesFromContent(contentId);
+//		return images;
+//	}
+	
 	@Path("{contentId}/image/{imageId}")
 	@GET
 	@Produces("image/*")
@@ -39,15 +47,15 @@ public class MultimediaResource {
 		return image;
 	}
 	
-	@Path("{contentId}/images")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Images getAllImagesFromContent(@PathParam("contentId") Long contentId) {
-		List<Image> imagesList = new ImagesDAO().findAllImagesFromContent(contentId);
-		Images images = new Images();
-		images.setImages(imagesList);
-		return images;
-	}
+//	@Path("{contentId}/images")
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Images getAllImagesFromContent(@PathParam("contentId") Long contentId) {
+//		List<Image> imagesList = new ImagesDAO().findAllImagesFromContent(contentId);
+//		Images images = new Images();
+//		images.setImages(imagesList);
+//		return images;
+//	}
 	
 //	@Path("{contentId}/images")
 //	@GET
@@ -58,13 +66,13 @@ public class MultimediaResource {
 //	}
 	
 	//Error MIME Type
-//	@Path("{contentId}/images")
-//	@GET
-//	@Produces(MediaType.APPLICATION_XML)
-//	public List<byte[]> getAllImagesFromContent(@PathParam("contentId") Long contentId) {
-//		List<byte[]> images = new ImagesDAO().findAllImagesFromContent(contentId);
-//		return images;
-//	}
+	@Path("{contentId}/images")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<byte[]> getAllImagesFromContent(@PathParam("contentId") Long contentId) {
+		List<byte[]> images = new ImagesDAO().findAllImagesFromContent(contentId);
+		return images;
+	}
 	
 	@Path("{contentId}/animation/{gifId}")
 	@GET

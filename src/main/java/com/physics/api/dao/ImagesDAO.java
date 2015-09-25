@@ -30,6 +30,7 @@ public class ImagesDAO {
 				image = new Image();
 				image.setId(result.getLong("id"));
 				image.setDescription(result.getString("description"));
+//				image.setImage(result.getString("image"));
 			}
 			conn.close();
 		} catch (SQLException e) {
@@ -66,35 +67,9 @@ public class ImagesDAO {
 
 	//Error MIME Type
 	
-//	public List<byte[]> findAllImagesFromContent(Long contentId) {
-//		List<byte[]> images = new ArrayList<>();
-//		byte[] blobAsBytes = {};
-//		
-//		try{
-//			Connection conn = DBConnection.getConnection();
-//			PreparedStatement ppStm = conn.prepareStatement(ImagesSqlConstants.RETURN_LIST_OF_IMAGES_FROM_CONTENT);
-//			ppStm.setLong(1, contentId);
-//			
-//			ResultSet rSet = ppStm.executeQuery();
-//			
-//			while(rSet.next()) {
-//				Blob blob = rSet.getBlob("image");
-//				int blobLenght = (int) blob.length();
-//				blobAsBytes = blob.getBytes(1, blobLenght);
-//				//libera memória
-//				blob.free();
-//				
-//				images.add(blobAsBytes);
-//			}
-//			conn.close();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return images;
-//	}
-	
-	public List<Image> findAllImagesFromContent(Long contentId) {
-		List<Image> images = new ArrayList<>();
+	public List<byte[]> findAllImagesFromContent(Long contentId) {
+		List<byte[]> images = new ArrayList<>();
+		byte[] blobAsBytes = {};
 		
 		try{
 			Connection conn = DBConnection.getConnection();
@@ -104,12 +79,13 @@ public class ImagesDAO {
 			ResultSet rSet = ppStm.executeQuery();
 			
 			while(rSet.next()) {
+				Blob blob = rSet.getBlob("image");
+				int blobLenght = (int) blob.length();
+				blobAsBytes = blob.getBytes(1, blobLenght);
+				//libera memória
+				blob.free();
 				
-				Image image = new Image();
-				image.setId(rSet.getLong("id"));
-				image.setDescription(rSet.getString("description"));
-				
-				images.add(image);
+				images.add(blobAsBytes);
 			}
 			conn.close();
 		} catch (SQLException e) {
@@ -117,4 +93,29 @@ public class ImagesDAO {
 		}
 		return images;
 	}
+	
+//	public List<Image> findAllImagesFromContent(Long contentId) {
+//		List<Image> images = new ArrayList<>();
+//		
+//		try{
+//			Connection conn = DBConnection.getConnection();
+//			PreparedStatement ppStm = conn.prepareStatement(ImagesSqlConstants.RETURN_LIST_OF_IMAGES_FROM_CONTENT);
+//			ppStm.setLong(1, contentId);
+//			
+//			ResultSet rSet = ppStm.executeQuery();
+//			
+//			while(rSet.next()) {
+//				
+//				Image image = new Image();
+//				image.setId(rSet.getLong("id"));
+//				image.setDescription(rSet.getString("description"));
+//				
+//				images.add(image);
+//			}
+//			conn.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return images;
+//	}
 }
