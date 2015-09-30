@@ -57,13 +57,13 @@ public class MultimediaResource {
 //		return images;
 //	}
 	
-//	@Path("{contentId}/images")
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public List<Image> getAllImagesFromContent(@PathParam("contentId") Long contentId) {
-//		List<Image> images = new ImagesDAO().findAllImagesFromContent(contentId);
-//		return images;
-//	}
+	@Path("{contentId}/images/data")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Image> getAllImagesDataFromContent(@PathParam("contentId") Long contentId) {
+		List<Image> images = new ImagesDAO().findAllImagesDataFromContent(contentId);
+		return images;
+	}
 	
 	//Error MIME Type
 	@Path("{contentId}/images")
@@ -76,7 +76,7 @@ public class MultimediaResource {
 	
 	@Path("{contentId}/animation/{gifId}")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("image/gif")
 	public byte[] getBlobGifAnimation(@PathParam("contentId") Long contentId, @PathParam("gifId") Long gifId) {
 		byte[] gif = new AnimationsDAO().findAnimationAsByte(gifId, contentId);
 		return gif;

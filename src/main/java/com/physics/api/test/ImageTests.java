@@ -19,10 +19,10 @@ public class ImageTests {
 		System.out.println(image);
 	}
 	
-	@Test
-	public void mustReturnListOfImagesInContent() {
-		List<Image> images = new ImagesDAO().findAllImagesFromContent(1L);
-		System.out.println(images);
-	}
+//	@Test
+//	public void mustReturnListOfImagesInContent() {
+//		List<Image> images = new ImagesDAO().findAllImagesFromContent(1L);
+//		System.out.println(images);
+//	}
 
 }
