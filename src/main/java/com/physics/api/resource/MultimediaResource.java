@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
 import com.physics.api.dao.AnimationsDAO;
+import com.physics.api.dao.FormulasDAO;
 import com.physics.api.dao.ImagesDAO;
 import com.physics.api.model.Animation;
 import com.physics.api.model.Image;
@@ -88,6 +89,14 @@ public class MultimediaResource {
 	public List<Animation> getAllAnimationsFromContent(@PathParam("contentId") Long contentId) {
 		List<Animation> animations = new AnimationsDAO().listAnimationsOnDatabase();
 		return animations;
+	}
+	
+	@Path("{contentId}/formula/{formulaId}")
+	@GET
+	@Produces("image/*")
+	public byte[] getBlobFormula(@PathParam("contentId")Long contentId, @PathParam("formulaId")Long formulaId) {
+		byte[] formula = new FormulasDAO().findFormulaAsByte(formulaId, contentId);
+		return formula;
 	}
 	
 	@GET
