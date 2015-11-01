@@ -11,7 +11,7 @@ public class DBConnection {
 	private static final String DATABASE_TEST = "physics_db_test";
 	private static final String URL = "jdbc:mysql://localhost:3306/"+DATABASE_TEST;
 	private static final String USER = "root";
-	private static final String PASSWORD = "root";
+	private static final String PASSWORD = "";
 	
 	public static Connection getConnection() throws SQLException {
 		try {
