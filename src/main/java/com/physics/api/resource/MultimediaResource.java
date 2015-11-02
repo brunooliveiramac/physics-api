@@ -42,24 +42,6 @@ public class MultimediaResource {
 		return image;
 	}
 	
-	
-/*	@Path("/answers/{contentId}")
-	@GET
-	@Produces("application/json")
-	public  List<String> getAllAnswer(@PathParam("contentId") Long contentId){
-		List<String> ans = new AnswerDAO().allAnswers(contentId);
-		return ans;
-	}*/
-	
-/*	@Path("/answers/{contentId}")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public  List<Answer> getAllAnswer(@PathParam("contentId") Long contentId){
-		List<Answer> ans = new AnswerDAO().allAnswers(contentId);
-		return ans;
-	}
-	*/
-	
 	@Path("/answers/{contentId}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
