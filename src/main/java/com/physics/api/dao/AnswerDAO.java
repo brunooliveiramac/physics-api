@@ -12,32 +12,16 @@ import com.physics.api.model.Answer;
 
 public class AnswerDAO {
 
-	/*
-	 * public List<String> allAnswers(Long idContent){ List<String> answers =
-	 * null; String answer = null; try { Connection con =
-	 * DBConnection.getConnection();
-	 * 
-	 * PreparedStatement prepara =
-	 * con.prepareStatement(AnswerSqlConstants.RETURN_LIST_ANSWER);
-	 * prepara.setLong(1, idContent);
-	 * 
-	 * ResultSet resultSet = prepara.executeQuery();
-	 * 
-	 * while(resultSet.next()){ answer = resultSet.getString("answer");
-	 * answers.add(answer); } con.close(); } catch (Exception e) {
-	 * e.printStackTrace(); } return answers; }
-	 */
-
 	public List<Answer> allAnswers(Long idContent) {
 		List<Answer> answers = new ArrayList<Answer>();
 		try {
 			Connection con = DBConnection.getConnection();
 
-			PreparedStatement prepara = con
+			PreparedStatement ppStm = con
 					.prepareStatement(AnswerSqlConstants.RETURN_LIST_ANSWER);
-			prepara.setLong(1, idContent);
+			ppStm.setLong(1, idContent);
 
-			ResultSet resultSet = prepara.executeQuery();
+			ResultSet resultSet = ppStm.executeQuery();
 
 			while (resultSet.next()) {
 				Answer a = new Answer();
