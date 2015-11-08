@@ -27,6 +27,14 @@
 
 	<dependencies>
 
+		<!-- JDBC Template -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+
+
 		<!-- Jersey (REST) -->
 		<dependency>
 			<groupId>com.sun.jersey</groupId>

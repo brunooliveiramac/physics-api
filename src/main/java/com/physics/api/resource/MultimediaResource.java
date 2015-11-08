@@ -15,10 +15,13 @@ import com.physics.api.dao.AnswerDAO;
 import com.physics.api.dao.FormulasDAO;
 import com.physics.api.dao.ImagesDAO;
 import com.physics.api.dao.QuestionDAO;
+import com.physics.api.dao.VideoDAO;
 import com.physics.api.model.Animation;
 import com.physics.api.model.Answer;
 import com.physics.api.model.Answers;
 import com.physics.api.model.Image;
+import com.physics.api.model.Video;
+import com.physics.api.model.VideoResponse;
 
 @Path("content")
 public class MultimediaResource {
@@ -68,6 +71,16 @@ public class MultimediaResource {
 	public List<Image> getAllImagesDataFromContent(@PathParam("contentId") Long contentId) {
 		List<Image> images = new ImagesDAO().findAllImagesDataFromContent(contentId);
 		return images;
+	}
+	
+	@Path("{contentId}/videos")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public VideoResponse getVideosFromContent(@PathParam("contentId") Long contentId) {
+		List<Video> result = new VideoDAO().getVideosByContent(contentId);
+		VideoResponse response = new VideoResponse();
+		response.setVideos(result);
+		return response;
 	}
 	
 	//Error MIME Type
