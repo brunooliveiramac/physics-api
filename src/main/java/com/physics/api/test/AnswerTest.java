@@ -11,7 +11,7 @@ public class AnswerTest {
 		
 		@Test
 		public void testRespostas(){
-			List<Answer> resps = new AnswerDAO().allAnswers(1L);
+			List<Answer> resps = new AnswerDAO().getAllAnswers(1L);
 			System.out.println(resps);
 		}
 }

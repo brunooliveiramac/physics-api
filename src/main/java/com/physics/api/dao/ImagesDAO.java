@@ -8,12 +8,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.physics.api.commons.ImagesSqlConstants;
 import com.physics.api.connection.DBConnection;
+import com.physics.api.connection.DataSourceFactory;
 import com.physics.api.model.Content;
 import com.physics.api.model.Image;
 
 public class ImagesDAO {
+	
+	private JdbcTemplate jdbcTemplate;
+	private DataSource dataSource = new DataSourceFactory().getDataSource();
+	
+	public ImagesDAO() {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
 	
 	public Image findImageAsBase64(Long imageId, Long contentId) {
 		Image image = null;
@@ -39,30 +51,37 @@ public class ImagesDAO {
 	}
 	
 	public byte[] findImageAsByte(Long imageId, Long contentId) {
-		byte[] blobAsBytes = {};
-		try {
-			Connection conn = DBConnection.getConnection();
-			
-			PreparedStatement ppStm = conn.prepareStatement(ImagesSqlConstants.RETURN_UNIQUE_IMAGE_BY_ID);
-			ppStm.setLong(1, contentId);
-			ppStm.setLong(2, imageId);
-			
-			ResultSet result = ppStm.executeQuery();
-			
-			while(result.next()) {
-				Blob blob = result.getBlob("image");
-				int blobLenght = (int) blob.length();
-				blobAsBytes = blob.getBytes(1, blobLenght);
-				//libera memória
-				blob.free();
-			}
-			
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return blobAsBytes;
+		byte[] result = this.jdbcTemplate.queryForObject(ImagesSqlConstants.RETURN_UNIQUE_IMAGE_BY_ID,
+				new Object[]{imageId, contentId}, byte[].class);
+		
+		return result;
 	}
+	
+//	public byte[] findImageAsByte(Long imageId, Long contentId) {
+//		byte[] blobAsBytes = {};
+//		try {
+//			Connection conn = DBConnection.getConnection();
+//			
+//			PreparedStatement ppStm = conn.prepareStatement(ImagesSqlConstants.RETURN_UNIQUE_IMAGE_BY_ID);
+//			ppStm.setLong(1, contentId);
+//			ppStm.setLong(2, imageId);
+//			
+//			ResultSet result = ppStm.executeQuery();
+//			
+//			while(result.next()) {
+//				Blob blob = result.getBlob("image");
+//				int blobLenght = (int) blob.length();
+//				blobAsBytes = blob.getBytes(1, blobLenght);
+//				//libera memória
+//				blob.free();
+//			}
+//			
+//			conn.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return blobAsBytes;
+//	}
 	
 
 	//Error MIME Type

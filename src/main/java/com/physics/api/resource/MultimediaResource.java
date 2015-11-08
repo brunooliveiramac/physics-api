@@ -37,23 +37,23 @@ public class MultimediaResource {
 	}
 	
 	
-	@Path("{contentId}/questions/{questionId}")
-	@GET
-	@Produces("image/*")
-	public byte[] getBlobQuestion(@PathParam("questionId") Long questionId, @PathParam("contentId") Long contentId){
-		byte [] image = new QuestionDAO().findImageQuestion(contentId, questionId);
-		return image;
-	}
+//	@Path("{contentId}/questions/{questionId}")
+//	@GET
+//	@Produces("image/*")
+//	public byte[] getBlobQuestion(@PathParam("questionId") Long questionId, @PathParam("contentId") Long contentId){
+//		byte [] image = new QuestionDAO().findImageQuestion(contentId, questionId);
+//		return image;
+//	}
 	
-	@Path("/answers/{contentId}")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Answers getAllAnswer(@PathParam("contentId") Long contentId){
-		List<Answer> ans = new AnswerDAO().allAnswers(contentId);
-		Answers answers = new Answers();
-		answers.setAnswers(ans);
-		return answers;
-	}
+//	@Path("/answers/{contentId}")
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Answers getAllAnswer(@PathParam("contentId") Long contentId){
+//		List<Answer> ans = new AnswerDAO().allAnswers(contentId);
+//		Answers answers = new Answers();
+//		answers.setAnswers(ans);
+//		return answers;
+//	}
 	
 //	@Path("{contentId}/images")
 //	@GET
@@ -73,15 +73,15 @@ public class MultimediaResource {
 		return images;
 	}
 	
-	@Path("{contentId}/videos")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public VideoResponse getVideosFromContent(@PathParam("contentId") Long contentId) {
-		List<Video> result = new VideoDAO().getVideosByContent(contentId);
-		VideoResponse response = new VideoResponse();
-		response.setVideos(result);
-		return response;
-	}
+//	@Path("{contentId}/videos")
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public VideoResponse getVideosFromContent(@PathParam("contentId") Long contentId) {
+//		List<Video> result = new VideoDAO().getVideosByContent(contentId);
+//		VideoResponse response = new VideoResponse();
+//		response.setVideos(result);
+//		return response;
+//	}
 	
 	//Error MIME Type
 	@Path("{contentId}/images")
@@ -104,7 +104,7 @@ public class MultimediaResource {
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
 	public List<Animation> getAllAnimationsFromContent(@PathParam("contentId") Long contentId) {
-		List<Animation> animations = new AnimationsDAO().listAnimationsOnDatabase();
+		List<Animation> animations = new AnimationsDAO().listAnimations();
 		return animations;
 	}
 	
@@ -112,7 +112,7 @@ public class MultimediaResource {
 	@GET
 	@Produces("image/*")
 	public byte[] getBlobFormula(@PathParam("contentId")Long contentId, @PathParam("formulaId")Long formulaId) {
-		byte[] formula = new FormulasDAO().findFormulaAsByte(formulaId, contentId);
+		byte[] formula = new FormulasDAO().findFormulaAsBytes(formulaId, contentId);
 		return formula;
 	}
 	
