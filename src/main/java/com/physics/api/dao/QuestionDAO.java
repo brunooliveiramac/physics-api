@@ -12,16 +12,6 @@ public class QuestionDAO {
 	private JdbcTemplate jdbcTemplate;
 	private DataSource dataSource = new DataSourceFactory().getDataSource();
 	
-	public QuestionDAO() {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-	}
-	
-	public byte[] findImageQuestion(Long contentId, Long questionId) {
-		byte[] result = this.jdbcTemplate.queryForObject(QuestionSqlConstants.RETURN_QUESTIONS, 
-				new Object[]{contentId, questionId}, byte[].class);
-		
-		return result;
-	}
 
 //	public byte[] findImageQuestion(Long contentId, Long questionId) {
 //		byte[] blobAsBytes = {};
@@ -50,5 +40,17 @@ public class QuestionDAO {
 //
 //		return blobAsBytes;
 //	}
+	
+	public QuestionDAO() {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	public byte[] findImageQuestion(Long contentId, Long questionId) {
+		byte[] result = this.jdbcTemplate.queryForObject(QuestionSqlConstants.RETURN_QUESTIONS, 
+				new Object[]{contentId, questionId}, byte[].class);
+		
+		return result;
+	}
+
 
 }

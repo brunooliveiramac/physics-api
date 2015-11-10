@@ -11,6 +11,9 @@ import com.physics.api.model.Image;
 
 public class ImageTests {
 	
+			
+	
+	
 	@Test
 	@Ignore
 	public void mustReturnUniqueImageinBytes() {
@@ -18,11 +21,5 @@ public class ImageTests {
 		byte[] image = dao.findImageAsByte(1L, 4L);
 		System.out.println(image);
 	}
-	
-//	@Test
-//	public void mustReturnListOfImagesInContent() {
-//		List<Image> images = new ImagesDAO().findAllImagesFromContent(1L);
-//		System.out.println(images);
-//	}
 
 }

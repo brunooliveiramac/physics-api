@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VideoResponse {
-
+//
 	private List<Video> videos = new ArrayList<>();
 
 	public List<Video> getVideos() {

@@ -16,12 +16,7 @@ public class FormulasDAO {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	public byte[] findFormulaAsBytes(Long formulaId, Long contentId) {
-		byte[] result = this.jdbcTemplate.queryForObject(FormulasSqlConstants.RETURN_UNIQUE_FORMULA_BY_ID, 
-				new Object[]{formulaId, contentId}, byte[].class);
-		
-		return result;
-	}
+
 
 //	public byte[] findFormulaAsByte(Long formulaId, Long contentId) {
 //		byte[] blobAsBytes = {};
@@ -48,4 +43,11 @@ public class FormulasDAO {
 //		}
 //		return blobAsBytes;
 //	}
+	
+	public byte[] findFormulaAsBytes(Long formulaId, Long contentId) {
+		byte[] result = this.jdbcTemplate.queryForObject(FormulasSqlConstants.RETURN_UNIQUE_FORMULA_BY_ID, 
+				new Object[]{formulaId, contentId}, byte[].class);
+		
+		return result;
+	}
 }

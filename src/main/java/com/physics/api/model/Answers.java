@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Answers {
-
+//
 	List<Answer> answers;
 
 	public List<Answer> getAnswers() {

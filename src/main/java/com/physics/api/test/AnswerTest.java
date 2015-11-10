@@ -8,10 +8,10 @@ import com.physics.api.dao.AnswerDAO;
 import com.physics.api.model.Answer;
 
 public class AnswerTest {
-		
-		@Test
-		public void testRespostas(){
-			List<Answer> resps = new AnswerDAO().getAllAnswers(1L);
-			System.out.println(resps);
-		}
+				
+				@Test
+				public void testRespostas(){
+					List<Answer> resps = new AnswerDAO().getAllAnswers(1L);
+					System.out.println(resps);
+				}
 }
